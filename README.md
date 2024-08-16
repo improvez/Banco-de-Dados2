@@ -1,10 +1,12 @@
 # Banco-de-Dados2
 
-Teste. Testando.
+## Tutorial para criar um projeto no Visual Studio
 
-Criar novo projeto na pasta (BancoDeDados2)
-Aplicativo Web do ASP.NET (Core MVC)
-Local (cola a pasta do caminho)
-Nome do projeto (AulaEntityFramework)
+- Criar novo projeto na pasta (BancoDeDados2)
+- Aplicativo Web do ASP.NET (Core MVC)
+- Local (cola a pasta do caminho)
+- Nome do projeto (AulaEntityFramework)
+
+## Buscar conhecimento 
 
 MVVM - Model View View Model
