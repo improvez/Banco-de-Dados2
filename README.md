@@ -9,4 +9,4 @@
 
 ## Buscar conhecimento 
 
-MVVM - Model View View Model
+- MVVM - Model View View Model
