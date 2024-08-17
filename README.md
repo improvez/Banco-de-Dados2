@@ -6,6 +6,7 @@
 - Aplicativo Web do ASP.NET (Core MVC)
 - Local (cola a pasta do caminho)
 - Nome do projeto (AulaEntityFramework)
+- Nome do servidor para conectar ((localdb)\MSSQLLocalDB) SQL Server Express
 
 ## Buscar conhecimento 
 
