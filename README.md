@@ -9,6 +9,7 @@
 - Nome do servidor para conectar "(localdb)\MSSQLLocalDB" SQL Server Express
 - Para criar a migration "dotnet ef migrations add Initial"
 - Comando para atualizar a migration "dotnet ef database update"
+- Novo item com scaffold na model
 
 ## Buscar conhecimento 
 
