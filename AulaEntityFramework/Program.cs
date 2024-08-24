@@ -1,4 +1,17 @@
+using AulaEntityFramework.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connString = builder.Configuration["AulaEntityFramework:ConnectionString"];
+
+// Dependency Injection
+//Fazemos a configuração do DbContext com 
+// O banco de dados especifico, neste caso
+// o SQLserver
+builder.Services.AddDbContext<MyDbContext>(
+        options => options.UseSqlServer(connString)
+    );
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -25,3 +38,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+//Ctrl + Shift + b = Compilar
