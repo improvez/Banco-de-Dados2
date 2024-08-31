@@ -17,5 +17,6 @@
 
 - MVVM - Model View View Model
 
+## Tema 
+
 Cria um projeto com categoria e item, 1 categoria pode ter varios items
-Cria um classe categoria e item
