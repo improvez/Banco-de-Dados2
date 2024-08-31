@@ -10,7 +10,12 @@
 - Para criar a migration "dotnet ef migrations add Initial"
 - Comando para atualizar a migration "dotnet ef database update"
 - Novo item com scaffold na model
+- ctrl + shift + b = builda o sistema
+- ctrl + f5 = rodar sem debugger
 
 ## Buscar conhecimento 
 
 - MVVM - Model View View Model
+
+Cria um projeto com categoria e item, 1 categoria pode ter varios items
+Cria um classe categoria e item

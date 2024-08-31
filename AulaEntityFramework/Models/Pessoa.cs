@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AulaEntityFramework.Migrations;
+using System;
 
 public class Pessoa
 {
@@ -7,4 +8,6 @@ public class Pessoa
 		public long Id { get; set; }
 		public string? Name { get; set; } 
 	    public DateTime BirthDate { get; set; }
+
+		public List<Endereco>? Enderecos { get; set; }
 	}
