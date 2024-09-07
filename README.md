@@ -20,3 +20,8 @@
 ## Tema 
 
 Cria um projeto com categoria e item, 1 categoria pode ter varios items
+- Modelo - Categoria 1 : N Item (Carro, Banda, Time) etc...
+- ORM - Conexão
+- Criar migrations - Atualizar BD
+- Controllers / Views (Scaffold)
+- Git (Atualizar repositorio)
