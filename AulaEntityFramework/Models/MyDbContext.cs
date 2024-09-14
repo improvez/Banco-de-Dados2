@@ -23,6 +23,9 @@ namespace AulaEntityFramework.Models
 
 		public DbSet<Pessoa> Pessoas { get; set; }
 		public DbSet<Endereco> Enderecos { get; set; }
-		
-	}
+
+        public DbSet<Time> Times { get; set; }
+        public DbSet<TimePessoa> TimePessoas { get; set; }
+
+    }
 }
