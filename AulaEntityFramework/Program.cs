@@ -1,4 +1,5 @@
 using AulaEntityFramework.Models;
+using AulaEntityFramework.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,10 @@ var connString = builder.Configuration["AulaEntityFramework:ConnectionString"];
 builder.Services.AddDbContext<MyDbContext>(
         options => options.UseSqlServer(connString)
     );
+
+// Registro dos serviços relacionados À camada de acesso ao repositorio de dados (repository)
+
+builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
