@@ -12,62 +12,32 @@ namespace AulaEntityFramework.Controllers
 {
     public class PessoasController : Controller
     {
-        private readonly MyDbContext _context;
 
         private IPessoaRepository _pessoaRepository;
         public PessoasController(
-            MyDbContext context,
             IPessoaRepository pessoaRepository
             )
         {
-            _context = context;
             _pessoaRepository = pessoaRepository;
         }
 
         // GET: Pessoas
         public  IActionResult Index()
         {
+
             return View(_pessoaRepository.GetAll());
         }
 
         // GET: Pessoas/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details(long id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pessoa = await _context.Pessoas
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (pessoa == null)
-            {
-                return NotFound();
-            }
-
-            return View(pessoa);
+            return View(_pessoaRepository.Get(id));
         }
 
         // GET: Pessoas/Create
-        public IActionResult Create()
+        public IActionResult Create(Pessoa person)
         {
-            return View();
-        }
-
-        // POST: Pessoas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,BirthDate")] Pessoa pessoa)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(pessoa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(pessoa);
+            return View(_pessoaRepository.Insert(person));
         }
 
         // GET: Pessoas/Edit/5
@@ -78,7 +48,7 @@ namespace AulaEntityFramework.Controllers
                 return NotFound();
             }
 
-            var pessoa = await _context.Pessoas.FindAsync(id);
+            var pessoa = _pessoaRepository.Get(id.Value);
             if (pessoa == null)
             {
                 return NotFound();
@@ -102,8 +72,7 @@ namespace AulaEntityFramework.Controllers
             {
                 try
                 {
-                    _context.Update(pessoa);
-                    await _context.SaveChangesAsync();
+                    _pessoaRepository.Update(pessoa);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -118,7 +87,7 @@ namespace AulaEntityFramework.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(pessoa);
+            return View(_pessoaRepository.Update(pessoa));
         }
 
         // GET: Pessoas/Delete/5
@@ -129,8 +98,7 @@ namespace AulaEntityFramework.Controllers
                 return NotFound();
             }
 
-            var pessoa = await _context.Pessoas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pessoa = _pessoaRepository.Get(id.Value);
             if (pessoa == null)
             {
                 return NotFound();
@@ -144,19 +112,14 @@ namespace AulaEntityFramework.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var pessoa = await _context.Pessoas.FindAsync(id);
-            if (pessoa != null)
-            {
-                _context.Pessoas.Remove(pessoa);
-            }
-
-            await _context.SaveChangesAsync();
+            var pessoa = _pessoaRepository.Delete(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool PessoaExists(long id)
         {
-            return _context.Pessoas.Any(e => e.Id == id);
+            var pessoa = _pessoaRepository.Get(id);
+            return !(pessoa is null);
         }
     }
 }

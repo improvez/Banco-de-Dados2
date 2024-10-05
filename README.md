@@ -50,3 +50,8 @@ participacoes dos times e atletas em competições dos mais diversos generos- te
 Os torneio deverão poder acontecer por grupo/chaveamentos com classificatórias 
 
 
+# Importante 
+
+- injection dependence
+- CQRS pattern
+- cmd = dml
