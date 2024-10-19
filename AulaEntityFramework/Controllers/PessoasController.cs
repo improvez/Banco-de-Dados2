@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AulaEntityFramework.Models;
 using AulaEntityFramework.Repositories;
+using Microsoft.IdentityModel.Tokens;
+using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AulaEntityFramework.Controllers
 {
@@ -22,25 +25,51 @@ namespace AulaEntityFramework.Controllers
         }
 
         // GET: Pessoas
-        public  IActionResult Index()
+        [HttpGet]
+        public  IActionResult Index(string bdt)
         {
+            var repo = _pessoaRepository.GetAll();
+            Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
+            Regex r2 = new Regex(@"(\d{4})");
 
-            return View(_pessoaRepository.GetAll());
+            if (!bdt.IsNullOrEmpty())
+                try
+                {
+                    repo = _pessoaRepository.GetByBirthMonth(Convert.ToInt32(bdt));
+                } catch
+                {
+                    repo = _pessoaRepository.GetByBirthDate(Convert.ToDateTime(bdt));
+                }
+
+            //if (r.Match(bdt).Success)
+            //    repo = _pessoaRepository.GetByBirthDate(Convert.ToDateTime(bdt));
+
+            //if (r2.Match(bdt).Success)
+            //    repo = _pessoaRepository.GetByBirthMonth(Convert.ToInt32(bdt));
+
+            return View(repo);
         }
 
         // GET: Pessoas/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(long id)
         {
+            if(id ==null)
+            {
+                NotFound();
+            }
             return View(_pessoaRepository.Get(id));
         }
 
         // GET: Pessoas/Create
+        [HttpGet]
         public IActionResult Create(Pessoa person)
         {
             return View(_pessoaRepository.Insert(person));
         }
 
         // GET: Pessoas/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -91,6 +120,7 @@ namespace AulaEntityFramework.Controllers
         }
 
         // GET: Pessoas/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
